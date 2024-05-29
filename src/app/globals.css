@@ -105,3 +105,45 @@ a {
     color-scheme: dark;
   }
 }
+
+.container {
+  min-width: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+.select-container {
+  position: relative;
+  width: 200px;
+  margin: 20px;
+}
+
+.select-display {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+
+.select-options {
+  position: absolute;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-top: none;
+  background: white;
+  z-index: 1000;
+}
+
+.select-option {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.select-option:hover {
+  background: #f0f0f0;
+}
