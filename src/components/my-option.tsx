@@ -1,17 +1,19 @@
 interface MyOptionProps {
-  option: { value: string; label: string };
-  onClick: (value: string) => void;
+  handleOptionClick: (value: string) => string;
+  value: number;
+  label: string;
 }
 
-const MyOption: React.FC<MyOptionProps> = ({ option, onClick }) => {
+const MyOption: React.FC<MyOptionProps> = ({ handleOptionClick, value, label }) => {
+  
   return (
     <div
-      key={option.value}
+      key={value}
       className="select-option"
-      onClick={() => onClick(option.value)}
+      onClick={() => handleOptionClick(label)}
       data-testid="option-container"
     >
-      {option.label}
+      {label}
     </div>
   );
 };

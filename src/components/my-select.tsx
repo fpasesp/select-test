@@ -1,31 +1,29 @@
 import React, { useEffect, useRef, useState } from "react";
 import MyOption from "./my-option";
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 interface MySelectProps {
-  options: Array<{ value: string; label: string }>;
-  value: string;
   onChange: (value: string) => void;
 }
 
-const MySelect: React.FC<MySelectProps> = ({ options, value, onChange }) => {
+const MySelect: React.FC<MySelectProps> = ({ onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedValue, setSelectedValue] = useState("");
   const selectRef = useRef<HTMLDivElement>(null);
 
   const handleToggleOpen = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleOptionClick = (value: string) => {
-    onChange(value);
+  const handleOptionClick = (selectedValue: string) => {
+    setSelectedValue(selectedValue);
     setIsOpen(false);
+    onChange(selectedValue);
+    return selectedValue;
   };
 
   const handleOutClick = (e: MouseEvent) => {
-    if (
-      selectRef.current &&
-      !selectRef.current.contains(e.target as Node)
-    ) {
+    if (selectRef.current && !selectRef.current.contains(e.target as Node)) {
       setIsOpen(false);
     }
   };
@@ -37,23 +35,42 @@ const MySelect: React.FC<MySelectProps> = ({ options, value, onChange }) => {
     };
   }, []);
 
-  const selectedLabel = options.find((option) => option.value === value)?.label;
-
   return (
-    <div className="select-container" ref={selectRef} data-testid="select-container">
-      <div className="select-display" onClick={handleToggleOpen} data-testid="select-option">
-        {selectedLabel || "Elija una opción"}
+    <div
+      className="select-container"
+      ref={selectRef}
+      data-testid="select-container"
+    >
+      <div
+        className="select-display"
+        onClick={handleToggleOpen}
+        data-testid="select-option"
+      >
+        {selectedValue || "Elija una opción"}
         <ArrowDropDownIcon />
       </div>
       {isOpen && (
         <div className="select-options">
-          {options.map((option) => (
-            <MyOption
-              key={option.value}
-              option={option}
-              onClick={() => handleOptionClick(option.value)}
-            />
-          ))}
+          <MyOption
+            handleOptionClick={handleOptionClick}
+            value={1}
+            label="uno"
+          />
+          <MyOption
+            handleOptionClick={handleOptionClick}
+            value={2}
+            label="dos"
+          />
+          <MyOption
+            handleOptionClick={handleOptionClick}
+            value={3}
+            label="tres"
+          />
+          <MyOption
+            handleOptionClick={handleOptionClick}
+            value={4}
+            label="cuatro"
+          />
         </div>
       )}
     </div>

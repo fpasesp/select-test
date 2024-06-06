@@ -1,10 +1,8 @@
 'use client';
 import styles from "./page.module.css";
 import { useState } from "react";
-import { TROPICAL_FRUITS } from "@/constants/fruits";
 import MySelect from "@/components/my-select";
 
-const tropicalFruits: Array<{value: string; label: string}> = TROPICAL_FRUITS;
 
 export default function Home() {
 
@@ -14,8 +12,8 @@ export default function Home() {
     <main className={styles.main}>
           <div className='container'>
       <h2>Prueba técnica Selector</h2>
-      <MySelect options={tropicalFruits} value={selectedItem} onChange={setSelectedItem}/>
-      <h3>La fruta tropical seleccionada es: {selectedItem}</h3>
+      <MySelect onChange={setSelectedItem}/>
+      <h3>El número elegido es el: {selectedItem}</h3>
     </div>
     </main>
   );
