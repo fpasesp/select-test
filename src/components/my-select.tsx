@@ -52,23 +52,19 @@ const MySelect: React.FC<MySelectProps> = ({ onChange }) => {
       {isOpen && (
         <div className="select-options">
           <MyOption
-            handleOptionClick={handleOptionClick}
-            value={1}
+            value={handleOptionClick}
             label="uno"
           />
           <MyOption
-            handleOptionClick={handleOptionClick}
-            value={2}
+            value={handleOptionClick}
             label="dos"
           />
           <MyOption
-            handleOptionClick={handleOptionClick}
-            value={3}
+            value={handleOptionClick}
             label="tres"
           />
           <MyOption
-            handleOptionClick={handleOptionClick}
-            value={4}
+            value={handleOptionClick}
             label="cuatro"
           />
         </div>
